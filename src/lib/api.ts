@@ -39,8 +39,8 @@ export const createProduct = async (item: any) => {
   return response.data;
 };
 
-export const updateProduct = async (id: string, item: any) => {
-  const response = await api.put(`/products/updateProduct/${id}`, item);
+export const updateProduct = async (id: number, item: any) => {
+  const response = await api.patch(`/products/updateProduct/${id}`, item);
   return response.data;
 };
 
