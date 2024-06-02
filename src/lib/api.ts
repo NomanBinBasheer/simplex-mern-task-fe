@@ -1,0 +1,62 @@
+// api.ts
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'http://localhost:5000/api/v1',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+api.interceptors.request.use(
+    config => {
+    //   const token = getToken();
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxNzMxMzY3MiwiZXhwIjoxNzE5OTA1NjcyfQ.om8uFrbIjEIDCZaa3E8uE_-v_jcnJsSOfrj2__7bTlk";
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
+
+export const getProducts = async () => {
+  const response = await api.get('/products/getAllProducts');
+  console.log(response.data.data);
+  
+  return response.data.data;
+};
+
+export const getProduct = async (id: string) => {
+  const response = await api.get(`/products/getOneProduct/${id}`);
+  return response.data;
+};
+
+export const createProduct = async (item: any) => {
+  const response = await api.post('/products/createProduct', item);
+  return response.data;
+};
+
+export const updateProduct = async (id: string, item: any) => {
+  const response = await api.put(`/products/updateProduct/${id}`, item);
+  return response.data;
+};
+
+export const deleteProduct = async (id: number) => {
+  const response = await api.delete(`/products/deleteProduct/${id}`);
+  return response.data;
+};
+
+export const uploadFile = async (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+  
+    const response = await api.post('/products/uploadProductImage', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  };
