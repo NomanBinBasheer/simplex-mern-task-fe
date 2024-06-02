@@ -60,7 +60,6 @@ const Home: React.FC = () => {
     try {
       const items = await getProducts();
       setProducts(items);
-      console.log(items);
     } catch (error) {
       console.error("Error fetching items:", error);
     }
@@ -88,7 +87,6 @@ const Home: React.FC = () => {
       try {
         const file = e.target.files[0];
         const response = await uploadFile(file);
-        console.log(response.data);
 
         setFormData((prevData) => ({
           ...prevData,

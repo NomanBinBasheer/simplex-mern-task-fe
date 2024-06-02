@@ -24,7 +24,6 @@ api.interceptors.request.use(
 
 export const getProducts = async () => {
   const response = await api.get('/products/getAllProducts');
-  console.log(response.data.data);
   
   return response.data.data;
 };
