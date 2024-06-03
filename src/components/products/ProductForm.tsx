@@ -202,9 +202,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Product Sizes</SelectLabel>
-                  <SelectItem value="small">Small</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="large">Large</SelectItem>
+                  <SelectItem value="Small">Small</SelectItem>
+                  <SelectItem value="Medium">Medium</SelectItem>
+                  <SelectItem value="Large">Large</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
