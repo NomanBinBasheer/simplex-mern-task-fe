@@ -10,12 +10,14 @@ interface ProductCardProps {
   product: IProduct;
   openUpdateDialog: (product: IProduct) => void;
   handleDelete: (id: number) => void;
+  checkAuth: (callback: () => void) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   openUpdateDialog,
   handleDelete,
+  checkAuth,
 }) => {
   return (
     <Card className="flex flex-col justify-between col-span-1">
@@ -39,10 +41,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="text-sm">{product.description}</p>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button onClick={() => openUpdateDialog(product)}>Update</Button>
+        <Button onClick={() => checkAuth(() => openUpdateDialog(product))}>
+          Update
+        </Button>
         <Button
           className="bg-red-500 hover:bg-red-600"
-          onClick={() => handleDelete(product.id)}
+          onClick={() => checkAuth(() => handleDelete(product.id))}
         >
           Delete
         </Button>

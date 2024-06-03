@@ -6,6 +6,8 @@ import ProductForm from "@/components/products/ProductForm";
 import ProductList from "@/components/products/ProductList";
 import useProducts from "@/hooks/useProducts";
 import { IProduct } from "@/types";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const Home: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +15,15 @@ const Home: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
   const { products, fetchProducts, handleDelete } = useProducts();
 
+  const router = useRouter();
+
   const openAddDialog = () => {
+    const token = Cookies.get("token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
     setSelectedProduct(null);
     setIsUpdate(false);
     setIsOpen(true);
