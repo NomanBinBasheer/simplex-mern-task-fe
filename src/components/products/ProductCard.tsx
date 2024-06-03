@@ -25,6 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         width={300}
         height={100}
         className="w-full h-[180px] object-cover rounded-t-xl"
+        priority={true}
       />
       <CardContent>
         <Badge>{product.category}</Badge>
