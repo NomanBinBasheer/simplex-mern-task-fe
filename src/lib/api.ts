@@ -1,4 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import axios from 'axios';
+
 
 const api = axios.create({
   baseURL: 'http://localhost:5000/api/v1',
@@ -9,8 +13,9 @@ const api = axios.create({
 
 api.interceptors.request.use(
     config => {
-    //   const token = getToken();
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxNzMxMzY3MiwiZXhwIjoxNzE5OTA1NjcyfQ.om8uFrbIjEIDCZaa3E8uE_-v_jcnJsSOfrj2__7bTlk";
+      const token = process.env.NEXT_PUBLIC_JWT_TOKEN as string;
+      console.log(token);
+      
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
