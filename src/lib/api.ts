@@ -14,7 +14,6 @@ const api = axios.create({
 api.interceptors.request.use(
     config => {
       const token = process.env.NEXT_PUBLIC_JWT_TOKEN as string;
-      console.log(token);
       
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
